@@ -261,8 +261,15 @@
         </div>
 
         <aside class="photo-wrap max-w-[300px] mx-auto lg:mx-0 lg:justify-self-end">
-          <div class="aspect-[4/5] bg-slate-100">
-            <img src="assets/main_foto.jpg" alt="Ярослав Сулейменов" class="w-full h-full object-cover" loading="eager" decoding="async" onerror="imageFallback(this, 'Фото профиля')" />
+          <div class="bg-slate-100 flex items-center justify-center">
+            <img
+              src="assets/main_foto.jpg"
+              alt="Ярослав Сулейменов"
+              class="w-full object-contain"
+              loading="eager"
+              decoding="async"
+              onerror="imageFallback(this, 'Фото профиля')"
+            />
           </div>
           <div class="p-5 bg-white border-t border-slate-200">
             <div class="font-bold text-slate-900">Ярослав Сулейменов</div>
