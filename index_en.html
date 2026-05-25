@@ -1,1 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yaroslav Suleimenov | Business Analyst</title>
+  <meta name="description" content="Business Analyst portfolio: business processes, internal systems, CRM, BI reporting, SQL analysis and automation." />
+  <meta name="theme-color" content="#2563eb" />
 
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Yaroslav Suleimenov | Business Analyst" />
+  <meta property="og:description" content="Business Analyst portfolio: internal systems, CRM processes, BI reporting and operational analytics." />
+  <meta property="og:image" content="assets/preview.jpg" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .container-xl {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .section {
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .04);
+    }
+
+    .card-hover {
+      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+
+    .card-hover:hover {
+      border-color: #bfdbfe;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, .07);
+      transform: translateY(-2px);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .nav-link {
+      color: #475569;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .15s ease;
+    }
+
+    .nav-link:hover { color: var(--accent); }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: .68rem 1rem;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .metric {
+      border-left: 1px solid var(--line);
+      padding-left: 18px;
+    }
+
+    .metric:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .photo-wrap {
+      border: 1px solid var(--line);
+      background: #e5e7eb;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, .08);
+    }
+
+    @media (max-width: 640px) {
+      .section { padding-top: 56px; padding-bottom: 56px; }
+      .metric { border-left: 0; padding-left: 0; }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    function imageFallback(img, label) {
+      img.onerror = null;
+      const wrapper = img.parentElement;
+      img.remove();
+      const fallback = document.createElement('div');
+      fallback.className = 'w-full h-full flex items-center justify-center bg-slate-100 text-slate-500 text-sm font-medium text-center p-4';
+      fallback.textContent = label || 'Image';
+      wrapper.appendChild(fallback);
+    }
+  </script>
+
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="container-xl">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#hero" class="font-bold tracking-tight text-slate-900">Yaroslav Suleimenov</a>
+
+        <div class="hidden lg:flex items-center gap-6">
+          <a href="#profile" class="nav-link">Profile</a>
+          <a href="#projects" class="nav-link">Cases</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#contact" class="nav-link">Contacts</a>
+          <a href="index.html" class="btn-secondary !min-h-0 !py-2 !px-3" lang="ru">Русский</a>
+        </div>
+
+        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Open menu">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white">
+      <div class="container-xl py-3 grid gap-2 text-sm font-semibold text-slate-700">
+        <a href="#profile" class="py-2">Profile</a>
+        <a href="#projects" class="py-2">Cases</a>
+        <a href="#skills" class="py-2">Skills</a>
+        <a href="#experience" class="py-2">Experience</a>
+        <a href="#contact" class="py-2">Contacts</a>
+        <a href="index.html" class="py-2 text-blue-700" lang="ru">Русский</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="bg-white border-b border-slate-200">
+    <div class="container-xl section">
+      <div class="grid lg:grid-cols-[1fr_320px] gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-4">Business Analyst</p>
+
+          <h1 class="max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem] font-bold leading-tight tracking-[-.035em] text-slate-900">
+            Business Analysis and Data Analytics
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
+            I help formalize business requirements, design internal systems, structure operational processes, and translate business needs into clear artifacts for development and management teams.
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href="#projects" class="btn-primary">View Cases</a>
+            <a href="assets/Yaroslav_Suleimenov_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">Resume PDF</a>
+            <a href="mailto:yarsuleimenov@gmail.com" class="btn-secondary">Contact</a>
+          </div>
+
+          <div class="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl text-sm">
+            <div class="metric">
+              <div class="text-xl font-bold text-slate-900">10+ years</div>
+              <div class="mt-1 text-slate-500">B2B, processes, customer analytics</div>
+            </div>
+            <div class="metric">
+              <div class="text-xl font-bold text-slate-900">BA / Processes</div>
+              <div class="mt-1 text-slate-500">Requirements, workflows, backlog, documentation</div>
+            </div>
+            <div class="metric">
+              <div class="text-xl font-bold text-slate-900">Systems / Analytics</div>
+              <div class="mt-1 text-slate-500">CRM, SQL, BI, interfaces, internal systems</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="photo-wrap max-w-[300px] mx-auto lg:mx-0 lg:justify-self-end">
+          <div class="bg-slate-100 flex items-center justify-center overflow-hidden">
+            <img
+              src="assets/main_foto.jpg"
+              alt="Yaroslav Suleimenov"
+              class="w-full object-contain"
+              loading="eager"
+              decoding="async"
+              onerror="imageFallback(this, 'Profile photo')"
+            />
+          </div>
+          <div class="p-5 bg-white border-t border-slate-200">
+            <div class="font-bold text-slate-900">Yaroslav Suleimenov</div>
+            <div class="mt-1 text-sm text-slate-500">Business Analyst</div>
+            <div class="mt-4 text-sm text-slate-600 leading-6">Focus: business analysis, internal systems, CRM processes, and analytics for operational decisions.</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="profile" class="section">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Profile</p>
+            <h2 class="section-title">Core Competencies</h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Business Analysis</h3>
+              <p class="mt-3 text-slate-600 leading-7">Requirements gathering, as-is / to-be analysis, user stories, use cases, backlog, acceptance criteria, and task definition for development.</p>
+            </article>
+
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Systems and Data Analysis</h3>
+              <p class="mt-3 text-slate-600 leading-7">SQL queries, data analysis, reporting, logic validation, and analytical support for management decisions.</p>
+            </article>
+
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Processes and Systems</h3>
+              <p class="mt-3 text-slate-600 leading-7">CRM processes, internal portals, user roles, workflows, interface prototypes, and integration logic.</p>
+            </article>
+
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Documentation and Task Definition</h3>
+              <p class="mt-3 text-slate-600 leading-7">Technical specifications, acceptance criteria, backlog, business logic, user scenarios, and development requirements.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section bg-white border-y border-slate-200">
+      <div class="container-xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="eyebrow mb-3">Portfolio</p>
+          <h2 class="section-title">Cases and Artifacts</h2>
+          <p class="section-subtitle mt-4">Selected examples showing my approach to business problems: from requirements analysis to prototypes, reporting, and validated results.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-5">
+          <article class="card card-hover p-6 lg:col-span-2">
+            <!-- Insert wireframe_shot: upload the file to assets/projects/wireframe_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/7] mb-5 overflow-hidden">
+              <img src="assets/projects/wireframe_shot.jpg" alt="Broker calculator system" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Broker calculator wireframe')" />
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-blue-700 mb-2">BA / System Design / CRM</p>
+                <h3 class="text-xl font-bold text-slate-900">Broker Calculator System</h3>
+              </div>
+              <a href="#contact" class="text-sm font-bold text-blue-700 hover:text-blue-900 shrink-0">Discuss case →</a>
+            </div>
+
+            <p class="mt-4 text-slate-600 leading-7 max-w-3xl">Design of a broker calculator for quote calculation, margin analysis, variable costs, and reference data management: reference data, item templates, pricing logic, roles, and broker workflows.</p>
+
+            <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <div class="font-semibold text-slate-900">Task</div>
+                <p class="mt-1 text-slate-600 leading-6">Standardize quote calculation, variable costs, and margin logic while reducing dependency on manual calculations.</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <div class="font-semibold text-slate-900">Artifacts</div>
+                <p class="mt-1 text-slate-600 leading-6">Reference data, pricing logic, margin calculation, item templates, workflow design.</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <div class="font-semibold text-slate-900">Result</div>
+                <p class="mt-1 text-slate-600 leading-6">MVP concept for discussing calculation logic and system architecture.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- Insert ab_test_shot: upload the file to assets/projects/ab_test_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/9] mb-5 overflow-hidden">
+              <img src="assets/projects/ab_test_shot.jpg" alt="A/B test dashboard" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'A/B test dashboard')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">Analytics / Reporting</p>
+            <h3 class="text-xl font-bold text-slate-900">A/B Test: Push Notifications</h3>
+            <p class="mt-4 text-slate-600 leading-7">Analysis of how push notifications affected conversion, average order value, and regional performance.</p>
+            <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-3">
+                <div class="font-bold text-slate-900">+11.9%</div>
+                <div class="text-slate-500 mt-1">average order value</div>
+              </div>
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-3">
+                <div class="font-bold text-slate-900">+4.3 p.p.</div>
+                <div class="text-slate-500 mt-1">conversion</div>
+              </div>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="ab_report/index.html" class="text-sm font-bold text-blue-700 hover:text-blue-900">Infographic →</a>
+              <a href="https://nbviewer.jupyter.org/github/yarsuleimenov-code/yarsuleimenov-profile/blob/main/ab_report/ab_report.ipynb" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-blue-700 hover:text-blue-900">Notebook →</a>
+            </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- Insert course_shot: upload the file to assets/projects/course_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/9] mb-5 overflow-hidden">
+              <img src="assets/projects/course_shot.jpg" alt="IBP and OLAP course materials" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Course materials')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">Education / Analytics</p>
+            <h3 class="text-xl font-bold text-slate-900">Course “Introduction to IBP and OLAP”</h3>
+            <p class="mt-4 text-slate-600 leading-7">Development of an elective course covering OLAP architecture, planning, modeling, and financial logic.</p>
+            <div class="mt-5">
+              <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-blue-700 hover:text-blue-900">View course →</a>
+            </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <p class="text-sm font-semibold text-blue-700 mb-2">Excel / Sheets / Automation</p>
+            <h3 class="text-xl font-bold text-slate-900">Reporting Automation</h3>
+            <p class="mt-4 text-slate-600 leading-7">Calculation tables, reporting views, pivot tables, formulas, and operational reports.</p>
+          </article>
+
+          <article class="card card-hover p-6">
+            <p class="text-sm font-semibold text-blue-700 mb-2">System / SQL Analysis</p>
+            <h3 class="text-xl font-bold text-slate-900">Database Queries and Data Validation</h3>
+            <p class="mt-4 text-slate-600 leading-7">Data structure validation, active order calculations, stage-based grouping, and report-ready data extracts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Skills</p>
+            <h2 class="section-title">Tools and Approaches</h2>
+          </div>
+
+          <div class="card p-6">
+            <div class="grid md:grid-cols-3 gap-x-10 gap-y-7">
+              <div>
+                <h3 class="font-bold text-slate-900">Business Analysis</h3>
+                <p class="mt-2 text-slate-600 leading-7">Requirements, user stories, BPMN, acceptance criteria, backlog, stakeholder communication</p>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900">Analytics & Reporting</h3>
+                <p class="mt-2 text-slate-600 leading-7">SQL, Power BI, Excel, KPI analysis, dashboards, operational reporting</p>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900">Systems & Processes</h3>
+                <p class="mt-2 text-slate-600 leading-7">CRM, process mapping, internal systems, Apps Script, API logic</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section bg-white border-y border-slate-200">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Career</p>
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle mt-4">Progression from B2B and operational processes to business analysis, data analytics, and internal system design.</p>
+          </div>
+
+          <div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-700 leading-7 mb-5">
+              <span class="font-semibold text-slate-900">Competency development:</span>
+              B2B Sales → Analytics → Process Automation → Business Analysis → Internal Systems
+            </div>
+
+            <div class="grid gap-5">
+              <article class="card p-6">
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900">Business Analyst</h3>
+                  <p class="mt-1 text-sm text-slate-500">Zaberman LLC · March 2026 — Present</p>
+                </div>
+
+                <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                  <div>
+                    <div class="font-semibold text-slate-900">Key focus</div>
+                    <p class="mt-2 text-slate-600 leading-6">
+                      Design and implementation of an internal information system for company operations.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-slate-900">Main responsibilities</div>
+                    <ul class="mt-2 space-y-2 text-slate-600 leading-6">
+                      <li>• Analysis of dispatch, CRM, and internal operational processes</li>
+                      <li>• Design of Operational Hub structure and user scenarios</li>
+                      <li>• Requirements formalization, backlog management, and task definition for development</li>
+                      <li>• Elaboration of roles, integrations, BI reporting, and system architecture</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card p-6 border-blue-200 bg-gradient-to-b from-white to-blue-50/40">
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900">Business Analyst</h3>
+                  <p class="mt-1 text-sm text-slate-500">Optimacros · May 2025 — March 2026</p>
+                </div>
+
+                <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                  <div>
+                    <div class="font-semibold text-slate-900">Key focus</div>
+                    <p class="mt-2 text-slate-600 leading-6">
+                      Business requirements, internal systems, processes, user scenarios, and analytical support for decision-making.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-slate-900">Main responsibilities</div>
+                    <ul class="mt-2 space-y-2 text-slate-600 leading-6">
+                      <li>• Gathering and documenting business requirements for internal systems</li>
+                      <li>• Designing MVP information system concepts and wireframes</li>
+                      <li>• Preparing analytical artifacts and documentation</li>
+                      <li>• Managing backlog, knowledge base, and task definitions</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card p-6">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">Regional Brand Representative</h3>
+                  <p class="mt-1 text-sm text-slate-500">Forte Holding GmbH · June 2023 — May 2025</p>
+                </div>
+
+                <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                  <div>
+                    <div class="font-semibold text-slate-900">Key focus</div>
+                    <p class="mt-2 text-slate-600 leading-6">
+                      B2B sales, customer analytics, KPIs, and sales effectiveness.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-slate-900">Results</div>
+                    <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-slate-700">
+                      <div><span class="font-semibold">4 cities</span> covered for brand development</div>
+                      <div><span class="font-semibold">20% of clients</span> generated 75% of revenue</div>
+                      <div><span class="font-semibold">ABC/XYZ</span> customer segmentation</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card p-6">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">Key Account Manager / B2B Analytics</h3>
+                  <p class="mt-1 text-sm text-slate-500">Russkiy Svet · September 2016 — May 2023</p>
+                </div>
+
+                <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                  <div>
+                    <div class="font-semibold text-slate-900">Key focus</div>
+                    <p class="mt-2 text-slate-600 leading-6">
+                      B2B clients, sales analysis, margin analysis, and process automation.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-slate-900">Results</div>
+                    <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-slate-700">
+                      <div><span class="font-semibold">+20% annually</span> revenue growth</div>
+                      <div><span class="font-semibold">87%</span> of orders moved to the online store</div>
+                      <div><span class="font-semibold">12%</span> growth in contract profitability</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card p-6">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">Supply Analyst</h3>
+                  <p class="mt-1 text-sm text-slate-500">220 VOLT · February 2014 — September 2016</p>
+                </div>
+
+                <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                  <div>
+                    <div class="font-semibold text-slate-900">Key focus</div>
+                    <p class="mt-2 text-slate-600 leading-6">
+                      Excel automation, price list processing, and assortment analysis.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-slate-900">Results</div>
+                    <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-slate-700">
+                      <div><span class="font-semibold">30 minutes</span> instead of 2–3 hours for price list updates</div>
+                      <div><span class="font-semibold">15+ brands</span> under inventory control</div>
+                      <div><span class="font-semibold">2–3 hours</span> instead of 1–2 days for commercial proposals</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Qualifications</p>
+            <h2 class="section-title">Education and Certificates</h2>
+            <p class="section-subtitle mt-4">Cards are clickable and open diplomas or certificates in a new tab.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="assets/diplom.jpg" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2026 · Skyeng</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Data Analyst</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Open</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Professional development diploma</p>
+            </a>
+
+            <a href="assets/BI_analyst.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2025 · Analytic Workspace Academy</div>
+                  <h3 class="mt-2 font-bold text-slate-900">BI Analyst</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Open</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">PDF certificate</p>
+            </a>
+
+            <a href="assets/fin_analysis.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2025 · Electronic certificate</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Financial Statement Analysis</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Open</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">PDF certificate</p>
+            </a>
+
+            <a href="assets/client_exp.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">Electronic certificate</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Customer Experience Management</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Open</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">PDF certificate</p>
+            </a>
+
+            <a href="assets/SQL_sert.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2024 · Online platform</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Interactive SQL Training</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Open</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">PDF certificate</p>
+            </a>
+
+            <div class="card p-5">
+              <div class="text-sm text-slate-500">2010 · Higher education</div>
+              <h3 class="mt-2 font-bold text-slate-900">Karaganda Economic University of Kazpotrebsoyuz</h3>
+              <p class="mt-3 text-sm text-slate-600">Legal Regulation in Economics</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section bg-slate-900 text-white">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10 items-start">
+          <div>
+            <p class="text-blue-300 text-sm font-bold mb-3">Contacts</p>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Contact me about a project or role</h2>
+          </div>
+
+          <div>
+            <p class="max-w-2xl text-slate-300 leading-7">Relevant areas: business analysis, internal systems, CRM processes, BI reporting, and operational analytics.</p>
+
+            <div class="mt-7 grid md:grid-cols-2 gap-4 text-sm">
+              <a href="mailto:yarsuleimenov@gmail.com" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Send email">
+                <div class="font-semibold text-white">Email</div>
+                <div class="mt-1 text-slate-300">yarsuleimenov@gmail.com</div>
+              </a>
+              <a href="https://www.linkedin.com/in/yaroslav-suleimenov-380822363/" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Open LinkedIn profile">
+                <div class="font-semibold text-white">LinkedIn</div>
+                <div class="mt-1 text-slate-300">yaroslav-suleimenov</div>
+              </a>
+              <a href="https://t.me/Yar_Suleimenov" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Open Telegram">
+                <div class="font-semibold text-white">Telegram</div>
+                <div class="mt-1 text-slate-300">@Yar_Suleimenov</div>
+              </a>
+              <a href="https://karaganda.hh.kz/resume/7cb80dacff0ebc71240039ed1f317635616543" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Open HH resume">
+                <div class="font-semibold text-white">HH</div>
+                <div class="mt-1 text-slate-300">Resume</div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-7 border-t border-white/10 flex flex-col sm:flex-row gap-3 justify-between text-sm text-slate-400">
+          <p>© <span id="year">2026</span> Yaroslav Suleimenov</p>
+          <p>Business Analyst Portfolio</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
