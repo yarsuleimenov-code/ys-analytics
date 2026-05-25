@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ярослав Сулейменов | Business Analyst</title>
+  <meta name="description" content="Портфолио бизнес-аналитика: бизнес-процессы, внутренние системы, CRM, BI-отчётность, SQL-анализ и автоматизация." />
+  <meta name="theme-color" content="#2563eb" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ярослав Сулейменов | Business Analyst" />
+  <meta property="og:description" content="Портфолио бизнес-аналитика: внутренние системы, CRM-процессы, BI-отчётность и операционная аналитика." />
+  <meta property="og:image" content="assets/preview.jpg" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .container-xl {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .section {
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .04);
+    }
+
+    .card-hover {
+      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+
+    .card-hover:hover {
+      border-color: #bfdbfe;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, .07);
+      transform: translateY(-2px);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .nav-link {
+      color: #475569;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .15s ease;
+    }
+
+    .nav-link:hover { color: var(--accent); }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: .68rem 1rem;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+
+    .metric {
+      border-left: 1px solid var(--line);
+      padding-left: 18px;
+    }
+
+    .metric:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .photo-wrap {
+      border: 1px solid var(--line);
+      background: #e5e7eb;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, .08);
+    }
+
+
+    @media (max-width: 640px) {
+      .section { padding-top: 56px; padding-bottom: 56px; }
+      .metric { border-left: 0; padding-left: 0; }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    function imageFallback(img, label) {
+      img.onerror = null;
+      const wrapper = img.parentElement;
+      img.remove();
+      const fallback = document.createElement('div');
+      fallback.className = 'w-full h-full flex items-center justify-center bg-slate-100 text-slate-500 text-sm font-medium text-center p-4';
+      fallback.textContent = label || 'Image';
+      wrapper.appendChild(fallback);
+    }
+  </script>
+
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="container-xl">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#hero" class="font-bold tracking-tight text-slate-900">Ярослав Сулейменов</a>
+
+        <div class="hidden lg:flex items-center gap-6">
+          <a href="#profile" class="nav-link">Профиль</a>
+          <a href="#projects" class="nav-link">Кейсы</a>
+          <a href="#skills" class="nav-link">Навыки</a>
+          <a href="#experience" class="nav-link">Опыт</a>
+          <a href="#contact" class="nav-link">Контакты</a>
+          <a href="index_en.html" class="btn-secondary !min-h-0 !py-2 !px-3" lang="en">English</a>
+        </div>
+
+        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Открыть меню">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white">
+      <div class="container-xl py-3 grid gap-2 text-sm font-semibold text-slate-700">
+        <a href="#profile" class="py-2">Профиль</a>
+        <a href="#projects" class="py-2">Кейсы</a>
+        <a href="#skills" class="py-2">Навыки</a>
+        <a href="#experience" class="py-2">Опыт</a>
+        <a href="#contact" class="py-2">Контакты</a>
+        <a href="index_en.html" class="py-2 text-blue-700" lang="en">English</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="bg-white border-b border-slate-200">
+    <div class="container-xl section">
+      <div class="grid lg:grid-cols-[1fr_320px] gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-4">Business Analyst</p>
+
+          <h1 class="max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem] font-bold leading-tight tracking-[-.035em] text-slate-900">
+            Бизнес-анализ и аналитика данных
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
+            Помогаю описывать бизнес-требования, проектировать внутренние системы, формализовывать процессы и переводить задачи бизнеса в понятные артефакты для разработки и менеджмента.
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href="#projects" class="btn-primary">Смотреть кейсы</a>
+            <a href="assets/Yaroslav_Suleimenov_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">Резюме PDF</a>
+            <a href="mailto:yarsuleimenov@gmail.com" class="btn-secondary">Связаться</a>
+          </div>
+
+          <div class="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl text-sm">
+            <div class="metric">
+              <div class="text-xl font-bold text-slate-900">10+ лет</div>
+              <div class="mt-1 text-slate-500">B2B, процессы, клиентская аналитика</div>
+            </div>
+            <div class="metric">
+              <div class="text-xl font-bold text-slate-900">BA / Processes</div>
+              <div class="mt-1 text-slate-500">Требования, процессы, backlog, документация</div>
+            </div>
+            <div class="metric">
+              <div class="text-xl font-bold text-slate-900">Systems / Analytics</div>
+              <div class="mt-1 text-slate-500">CRM, SQL, BI, интерфейсы, внутренние системы</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="photo-wrap max-w-[300px] mx-auto lg:mx-0 lg:justify-self-end">
+          <div class="aspect-[4/5] bg-slate-100">
+            <img src="assets/main_foto.jpg" alt="Ярослав Сулейменов" class="w-full h-full object-cover" loading="eager" decoding="async" onerror="imageFallback(this, 'Фото профиля')" />
+          </div>
+          <div class="p-5 bg-white border-t border-slate-200">
+            <div class="font-bold text-slate-900">Ярослав Сулейменов</div>
+            <div class="mt-1 text-sm text-slate-500">Business Analyst</div>
+            <div class="mt-4 text-sm text-slate-600 leading-6">Фокус: бизнес-анализ, внутренние системы, CRM-процессы и аналитика для операционных решений.</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="profile" class="section">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Профиль</p>
+            <h2 class="section-title">Ключевые компетенции</h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Бизнес-анализ</h3>
+              <p class="mt-3 text-slate-600 leading-7">Сбор требований, описание as-is / to-be, user stories, use cases, backlog, acceptance criteria, постановка задач разработке.</p>
+            </article>
+
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Системная и data-аналитика</h3>
+              <p class="mt-3 text-slate-600 leading-7">SQL-запросы, анализ данных, отчётность, проверка логики и поддержка управленческих решений.</p>
+            </article>
+
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Процессы и системы</h3>
+              <p class="mt-3 text-slate-600 leading-7">CRM-процессы, внутренние порталы, роли пользователей, сценарии работы, прототипы интерфейсов и интеграционная логика.</p>
+            </article>
+
+            <article class="card p-6">
+              <h3 class="text-lg font-bold text-slate-900">Документация и постановка задач</h3>
+              <p class="mt-3 text-slate-600 leading-7">ТЗ, acceptance criteria, backlog, описание логики, пользовательских сценариев и требований для разработки.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section bg-white border-y border-slate-200">
+      <div class="container-xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="eyebrow mb-3">Портфолио</p>
+          <h2 class="section-title">Кейсы и артефакты</h2>
+          <p class="section-subtitle mt-4">Рабочие примеры, показывающие подход к задачам: от анализа требований до прототипов, отчётов и проверяемых результатов.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-5">
+          <article class="card card-hover p-6 lg:col-span-2">
+            <!-- Вставить wireframe_shot: загрузить файл в assets/projects/wireframe_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/7] mb-5 overflow-hidden">
+              <img src="assets/projects/wireframe_shot.jpg" alt="Operational Hub wireframe" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Wireframe concept')" />
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-blue-700 mb-2">BA / Wireframe / CRM</p>
+                <h3 class="text-xl font-bold text-slate-900">Operational Hub MVP</h3>
+              </div>
+              <a href="#contact" class="text-sm font-bold text-blue-700 hover:text-blue-900 shrink-0">Обсудить кейс →</a>
+            </div>
+
+            <p class="mt-4 text-slate-600 leading-7 max-w-3xl">Концепт внутренней информационной системы: единое окно для сотрудников, быстрый доступ к сервисам, отчёты из БД, роли и сценарии диспетчера.</p>
+
+            <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <div class="font-semibold text-slate-900">Задача</div>
+                <p class="mt-1 text-slate-600 leading-6">Упростить работу с заказами, отчётами и внешними сервисами.</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <div class="font-semibold text-slate-900">Артефакты</div>
+                <p class="mt-1 text-slate-600 leading-6">Dashboard, dispatch workspace, роли, quick actions.</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <div class="font-semibold text-slate-900">Результат</div>
+                <p class="mt-1 text-slate-600 leading-6">Прототип для обсуждения с CEO и командой.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- Вставить ab_test_shot: загрузить файл в assets/projects/ab_test_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/9] mb-5 overflow-hidden">
+              <img src="assets/projects/ab_test_shot.jpg" alt="A/B test dashboard" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'A/B test dashboard')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">Analytics / Reporting</p>
+            <h3 class="text-xl font-bold text-slate-900">A/B-тест push-уведомлений</h3>
+            <p class="mt-4 text-slate-600 leading-7">Анализ влияния push-уведомлений на конверсию, средний чек и региональные показатели.</p>
+            <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-3">
+                <div class="font-bold text-slate-900">+11.9%</div>
+                <div class="text-slate-500 mt-1">средний чек</div>
+              </div>
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-3">
+                <div class="font-bold text-slate-900">+4.3 п.п.</div>
+                <div class="text-slate-500 mt-1">конверсия</div>
+              </div>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="ab_report/index.html" class="text-sm font-bold text-blue-700 hover:text-blue-900">Инфографика →</a>
+              <a href="https://nbviewer.jupyter.org/github/yarsuleimenov-code/yarsuleimenov-profile/blob/main/ab_report/ab_report.ipynb" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-blue-700 hover:text-blue-900">Notebook →</a>
+            </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- Вставить course_shot: загрузить файл в assets/projects/course_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/9] mb-5 overflow-hidden">
+              <img src="assets/projects/course_shot.jpg" alt="IBP and OLAP course materials" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Course materials')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">Education / Analytics</p>
+            <h3 class="text-xl font-bold text-slate-900">Курс “Введение в IBP и OLAP”</h3>
+            <p class="mt-4 text-slate-600 leading-7">Разработка факультативного курса: архитектура OLAP, планирование, моделирование и финансовая логика.</p>
+            <div class="mt-5">
+              <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-blue-700 hover:text-blue-900">Посмотреть курс →</a>
+            </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <p class="text-sm font-semibold text-blue-700 mb-2">Excel / Sheets / Automation</p>
+            <h3 class="text-xl font-bold text-slate-900">Автоматизация отчётности</h3>
+            <p class="mt-4 text-slate-600 leading-7">Расчётные таблицы, отчётные представления, сводные таблицы, формулы и операционные отчёты.</p>
+          </article>
+
+          <article class="card card-hover p-6">
+            <p class="text-sm font-semibold text-blue-700 mb-2">System / SQL Analysis</p>
+            <h3 class="text-xl font-bold text-slate-900">Запросы к БД и проверка данных</h3>
+            <p class="mt-4 text-slate-600 leading-7">Проверка структуры данных, расчёт активных заказов, группировки по стадиям и подготовка отчётных выборок.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Навыки</p>
+            <h2 class="section-title">Инструменты и подходы</h2>
+          </div>
+
+          <div class="card p-6">
+            <div class="grid md:grid-cols-3 gap-x-10 gap-y-7">
+              <div>
+                <h3 class="font-bold text-slate-900">Business Analysis</h3>
+                <p class="mt-2 text-slate-600 leading-7">Requirements, user stories, BPMN, acceptance criteria, backlog, stakeholder communication</p>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900">Analytics & Reporting</h3>
+                <p class="mt-2 text-slate-600 leading-7">SQL, Power BI, Excel, KPI analysis, dashboards, operational reporting</p>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900">Systems & Processes</h3>
+                <p class="mt-2 text-slate-600 leading-7">CRM, process mapping, internal systems, Apps Script, API logic</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section bg-white border-y border-slate-200">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Карьера</p>
+            <h2 class="section-title">Опыт</h2>
+            <p class="section-subtitle mt-4">Переход от B2B и операционных процессов к бизнес-анализу, аналитике данных и проектированию внутренних систем.</p>
+          </div>
+
+          <div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-700 leading-7 mb-5">
+              <span class="font-semibold text-slate-900">Развитие компетенций:</span>
+              B2B Sales → Analytics → Process Automation → Business Analysis → Internal Systems
+            </div>
+
+            <div class="grid gap-5">
+              <article class="card p-6">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900">Business Analyst</h3>
+                <p class="mt-1 text-sm text-slate-500">Zaberman LLC · март 2026 — настоящее время</p>
+              </div>
+
+              <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                <div>
+                  <div class="font-semibold text-slate-900">Ключевой фокус</div>
+                  <p class="mt-2 text-slate-600 leading-6">
+                    Проектирование и внедрение внутренней информационной системы для операционной работы компании.
+                  </p>
+                </div>
+
+                <div>
+                  <div class="font-semibold text-slate-900">Основные задачи</div>
+                  <ul class="mt-2 space-y-2 text-slate-600 leading-6">
+                    <li>• Анализ процессов dispatch, CRM и внутренних операций</li>
+                    <li>• Проектирование структуры Operational Hub и пользовательских сценариев</li>
+                    <li>• Формализация требований, backlog и постановка задач разработке</li>
+                    <li>• Проработка ролей, интеграций, BI-отчётности и архитектуры системы</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            
+            <article class="card p-6 border-blue-200 bg-gradient-to-b from-white to-blue-50/40">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900">Business Analyst</h3>
+                <p class="mt-1 text-sm text-slate-500">Optimacros · май 2025 — март 2026</p>
+              </div>
+
+              <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                <div>
+                  <div class="font-semibold text-slate-900">Ключевой фокус</div>
+                  <p class="mt-2 text-slate-600 leading-6">
+                    Бизнес-требования, внутренние системы, процессы, пользовательские сценарии и аналитическая поддержка решений.
+                  </p>
+                </div>
+
+                <div>
+                  <div class="font-semibold text-slate-900">Основные задачи</div>
+                  <ul class="mt-2 space-y-2 text-slate-600 leading-6">
+                    <li>• Сбор и описание бизнес-требований для внутренних систем</li>
+                    <li>• Проектирование MVP информационной системы и wireframe</li>
+                    <li>• Подготовка аналитических артефактов и документации</li>
+                    <li>• Управление backlog, базой знаний и постановкой задач</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="card p-6">
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">Regional Brand Representative</h3>
+                <p class="mt-1 text-sm text-slate-500">Forte Holding GmbH · июнь 2023 — май 2025</p>
+              </div>
+
+              <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                <div>
+                  <div class="font-semibold text-slate-900">Ключевой фокус</div>
+                  <p class="mt-2 text-slate-600 leading-6">
+                    B2B-продажи, клиентская аналитика, KPI и эффективность продаж.
+                  </p>
+                </div>
+
+                <div>
+                  <div class="font-semibold text-slate-900">Результаты</div>
+                  <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-slate-700">
+                    <div><span class="font-semibold">4 города</span> развития бренда</div>
+                    <div><span class="font-semibold">20% клиентов</span> генерировали 75% выручки</div>
+                    <div><span class="font-semibold">ABC/XYZ</span> сегментация базы</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card p-6">
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">Key Account Manager / B2B Analytics</h3>
+                <p class="mt-1 text-sm text-slate-500">Русский свет · сентябрь 2016 — май 2023</p>
+              </div>
+
+              <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                <div>
+                  <div class="font-semibold text-slate-900">Ключевой фокус</div>
+                  <p class="mt-2 text-slate-600 leading-6">
+                    B2B-клиенты, анализ продаж, маржинальность и автоматизация процессов.
+                  </p>
+                </div>
+
+                <div>
+                  <div class="font-semibold text-slate-900">Результаты</div>
+                  <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-slate-700">
+                    <div><span class="font-semibold">+20% ежегодно</span> рост оборота</div>
+                    <div><span class="font-semibold">87%</span> заказов через интернет-магазин</div>
+                    <div><span class="font-semibold">12%</span> рост рентабельности контрактов</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card p-6">
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">Supply Analyst</h3>
+                <p class="mt-1 text-sm text-slate-500">220 VOLT · февраль 2014 — сентябрь 2016</p>
+              </div>
+
+              <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
+                <div>
+                  <div class="font-semibold text-slate-900">Ключевой фокус</div>
+                  <p class="mt-2 text-slate-600 leading-6">
+                    Excel-автоматизация, обработка прайсов, анализ ассортимента.
+                  </p>
+                </div>
+
+                <div>
+                  <div class="font-semibold text-slate-900">Результаты</div>
+                  <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-slate-700">
+                    <div><span class="font-semibold">30 минут</span> вместо 2-3 часов на обновление прайсов</div>
+                    <div><span class="font-semibold">15+ брендов</span> под контролем остатков</div>
+                    <div><span class="font-semibold">2-3 часа</span> вместо 1-2 дней на КП</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Квалификация</p>
+            <h2 class="section-title">Обучение и сертификаты</h2>
+            <p class="section-subtitle mt-4">Карточки кликабельны, открывают дипломы и сертификаты в новой вкладке.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="assets/diplom.jpg" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2026 · СКАЕНГ</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Аналитик данных</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Открыть</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Диплом о повышении квалификации</p>
+            </a>
+
+            <a href="assets/BI_analyst.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2025 · Analytic Workspace Academy</div>
+                  <h3 class="mt-2 font-bold text-slate-900">BI-аналитик</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Открыть</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Сертификат PDF</p>
+            </a>
+
+            <a href="assets/fin_analysis.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2025 · Электронный сертификат</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Анализ финансовой отчётности</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Открыть</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Сертификат PDF</p>
+            </a>
+
+            <a href="assets/client_exp.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">Электронный сертификат</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Управление клиентским опытом</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Открыть</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Сертификат PDF</p>
+            </a>
+
+            <a href="assets/SQL_sert.pdf" target="_blank" rel="noopener noreferrer" class="card card-hover p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-sm text-slate-500">2024 · Online-платформа</div>
+                  <h3 class="mt-2 font-bold text-slate-900">Интерактивный тренажёр SQL</h3>
+                </div>
+                <span class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 group-hover:bg-blue-100">Открыть</span>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Сертификат PDF</p>
+            </a>
+
+            <div class="card p-5">
+              <div class="text-sm text-slate-500">2010 · Высшее образование</div>
+              <h3 class="mt-2 font-bold text-slate-900">Карагандинский экономический университет Казпотребсоюза</h3>
+              <p class="mt-3 text-sm text-slate-600">Правовое регулирование в сфере экономики</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section bg-slate-900 text-white">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10 items-start">
+          <div>
+            <p class="text-blue-300 text-sm font-bold mb-3">Контакты</p>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Связаться по проекту или роли</h2>
+          </div>
+
+          <div>
+            <p class="max-w-2xl text-slate-300 leading-7">Релевантные направления: бизнес-анализ, внутренние системы, CRM-процессы, BI-отчётность и операционная аналитика.</p>
+
+            <div class="mt-7 grid md:grid-cols-2 gap-4 text-sm">
+              <a href="mailto:yarsuleimenov@gmail.com" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Написать на email">
+                <div class="font-semibold text-white">Email</div>
+                <div class="mt-1 text-slate-300">yarsuleimenov@gmail.com</div>
+              </a>
+              <a href="https://www.linkedin.com/in/yaroslav-suleimenov-380822363/" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Открыть профиль LinkedIn">
+                <div class="font-semibold text-white">LinkedIn</div>
+                <div class="mt-1 text-slate-300">yaroslav-suleimenov</div>
+              </a>
+              <a href="https://t.me/Yar_Suleimenov" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Открыть Telegram">
+                <div class="font-semibold text-white">Telegram</div>
+                <div class="mt-1 text-slate-300">@Yar_Suleimenov</div>
+              </a>
+              <a href="https://karaganda.hh.kz/resume/7cb80dacff0ebc71240039ed1f317635616543" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition" aria-label="Открыть резюме на HH">
+                <div class="font-semibold text-white">HH</div>
+                <div class="mt-1 text-slate-300">Резюме</div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-7 border-t border-white/10 flex flex-col sm:flex-row gap-3 justify-between text-sm text-slate-400">
+          <p>© <span id="year">2026</span> Ярослав Сулейменов</p>
+          <p>Business Analyst Portfolio</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
