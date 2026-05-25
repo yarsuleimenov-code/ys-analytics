@@ -1,1 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A/B-тест push-уведомлений | Ярослав Сулейменов</title>
+  <meta name="description" content="Кейс A/B-теста push-уведомлений: проверка влияния на средний чек, конверсию и финансовый эффект." />
+  <meta name="theme-color" content="#2563eb" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="A/B-тест push-уведомлений | Ярослав Сулейменов" />
+  <meta property="og:description" content="Аналитический кейс: средний чек, конверсия, статистическая значимость и региональная сегментация." />
+  <meta property="og:image" content="../assets/projects/ab_test_shot.jpg" />
+
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --positive: #059669;
+      --negative: #dc2626;
+      --neutral: #94a3b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .container-xl {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .section {
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .04);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: .68rem 1rem;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .chart-box {
+      position: relative;
+      width: 100%;
+      height: 360px;
+    }
+
+    .tab-active {
+      border-color: var(--accent) !important;
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      .section { padding-top: 56px; padding-bottom: 56px; }
+      .chart-box { height: 320px; }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="container-xl">
+      <div class="flex h-16 items-center justify-between gap-4">
+        <a href="../index.html" class="font-bold tracking-tight text-slate-900">Ярослав Сулейменов</a>
+        <div class="flex items-center gap-3">
+          <a href="../index.html#projects" class="btn-secondary !min-h-0 !py-2 !px-3">← К портфолио</a>
+          <a href="https://nbviewer.jupyter.org/github/yarsuleimenov-code/yarsuleimenov-profile/blob/main/ab_report/ab_report.ipynb" target="_blank" rel="noopener noreferrer" class="btn-primary !min-h-0 !py-2 !px-3">Jupyter ↗</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-white border-b border-slate-200">
+    <div class="container-xl section">
+      <div class="grid lg:grid-cols-[1fr_340px] gap-10 items-start">
+        <div>
+          <p class="eyebrow mb-4">Analytics Case</p>
+          <h1 class="max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem] font-bold leading-tight tracking-[-.035em] text-slate-900">
+            A/B-тест push-уведомлений
+          </h1>
+          <p class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
+            Проверка влияния push-уведомлений на средний чек и конверсию. Кейс показывает полный аналитический цикл: очистка данных, статистическая проверка, бизнес-интерпретация и сегментация эффекта.
+          </p>
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href="#summary" class="btn-primary">Смотреть результаты</a>
+            <a href="#methodology" class="btn-secondary">Методология</a>
+          </div>
+        </div>
+
+        <aside class="card p-6">
+          <div class="text-sm text-slate-500">Ключевой вывод</div>
+          <p class="mt-3 text-xl font-bold leading-7 text-slate-900">
+            Push-уведомления статистически значимо улучшили средний чек и конверсию, но эффект неоднороден по торговым точкам.
+          </p>
+          <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-xl bg-slate-50 border border-slate-200 p-3">
+              <div class="font-bold text-green-700">+11.9%</div>
+              <div class="text-slate-500 mt-1">средний чек</div>
+            </div>
+            <div class="rounded-xl bg-slate-50 border border-slate-200 p-3">
+              <div class="font-bold text-green-700">+4.3 п.п.</div>
+              <div class="text-slate-500 mt-1">конверсия</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="summary" class="section">
+      <div class="container-xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="eyebrow mb-3">Business Summary</p>
+          <h2 class="section-title">Ключевые результаты</h2>
+          <p class="section-subtitle mt-4">
+            Общий эффект положительный и статистически значимый. Для масштабирования рекомендуется учитывать региональную и клиентскую сегментацию, так как часть торговых точек показала нейтральный или отрицательный эффект.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <article class="card p-6 border-l-4" style="border-left-color: var(--positive);">
+            <div class="text-sm text-slate-500">Средний чек</div>
+            <div class="mt-2 text-3xl font-bold text-green-700">+11.9%</div>
+            <div class="mt-3 text-sm text-slate-500">p-value: 4.41e-21</div>
+          </article>
+
+          <article class="card p-6 border-l-4" style="border-left-color: var(--positive);">
+            <div class="text-sm text-slate-500">Конверсия</div>
+            <div class="mt-2 text-3xl font-bold text-green-700">+4.3 п.п.</div>
+            <div class="mt-3 text-sm text-slate-500">p-value: 5.30e-20</div>
+          </article>
+
+          <article class="card p-6 border-l-4" style="border-left-color: var(--accent);">
+            <div class="text-sm text-slate-500">Финансовый баланс</div>
+            <div class="mt-2 text-3xl font-bold text-slate-900">237 337.93 ₽</div>
+            <div class="mt-3 text-sm text-slate-500">Чистый прирост по ТТ с положительным эффектом</div>
+          </article>
+
+          <article class="card p-6 border-l-4" style="border-left-color: var(--neutral);">
+            <div class="text-sm text-slate-500">Клиентов в выборке</div>
+            <div class="mt-2 text-3xl font-bold text-slate-900">45 841</div>
+            <div class="mt-3 text-sm text-slate-500">После очистки и валидации данных</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="overall" class="section bg-white border-y border-slate-200">
+      <div class="container-xl">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-10">
+          <div>
+            <p class="eyebrow mb-3">Statistical Evidence</p>
+            <h2 class="section-title">Общее сравнение групп</h2>
+            <p class="section-subtitle mt-4">
+              Переключатель позволяет сравнить тестовую и контрольную группы по среднему чеку и конверсии.
+            </p>
+            <button id="toggle-chart" class="btn-primary mt-6">Метрика: средний чек</button>
+          </div>
+
+          <div class="card p-6">
+            <div class="chart-box">
+              <canvas id="mainChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="segmentation" class="section">
+      <div class="container-xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="eyebrow mb-3">Segmentation</p>
+          <h2 class="section-title">Региональный анализ</h2>
+          <p class="section-subtitle mt-4">
+            Сегментация показывает, что общий положительный эффект скрывает различия между торговыми точками. Это важно для принятия решения о масштабировании.
+          </p>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-6">
+            <button data-segment="all" class="segment-tab tab-active px-3 py-2 text-sm font-semibold border-b-2 border-transparent text-slate-700">Все ТТ (<span id="all-count"></span>)</button>
+            <button data-segment="positive" class="segment-tab px-3 py-2 text-sm font-semibold border-b-2 border-transparent text-slate-700">Положительный эффект (<span id="positive-count"></span>)</button>
+            <button data-segment="neutral" class="segment-tab px-3 py-2 text-sm font-semibold border-b-2 border-transparent text-slate-700">Нейтральный эффект (<span id="neutral-count"></span>)</button>
+            <button data-segment="negative" class="segment-tab px-3 py-2 text-sm font-semibold border-b-2 border-transparent text-red-700">Отрицательный эффект (<span id="negative-count"></span>)</button>
+          </div>
+
+          <div class="grid lg:grid-cols-[320px_1fr] gap-6">
+            <div class="overflow-auto max-h-[460px]">
+              <h3 id="segment-title" class="font-bold text-slate-900 mb-3">Детализация: все торговые точки</h3>
+              <table class="min-w-full text-sm text-left text-slate-600">
+                <thead class="text-xs text-slate-600 uppercase bg-slate-50 sticky top-0">
+                  <tr>
+                    <th class="px-3 py-2">Город</th>
+                    <th class="px-3 py-2">ТТ ID</th>
+                    <th class="px-3 py-2">Эффект, ₽</th>
+                  </tr>
+                </thead>
+                <tbody id="segmentTableBody"></tbody>
+              </table>
+            </div>
+
+            <div>
+              <h3 class="font-bold text-slate-900 mb-3">Распределение эффекта</h3>
+              <div class="chart-box">
+                <canvas id="segmentChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodology" class="section bg-white border-y border-slate-200">
+      <div class="container-xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="eyebrow mb-3">Methodology</p>
+          <h2 class="section-title">Методология и качество данных</h2>
+          <p class="section-subtitle mt-4">
+            Кейс демонстрирует не только визуализацию, но и аналитическую дисциплину: очистку данных, проверку гипотез и бизнес-интерпретацию результата.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <article class="card p-6">
+            <h3 class="text-lg font-bold text-slate-900">Методы анализа</h3>
+            <ul class="mt-4 space-y-3 text-slate-600 leading-7">
+              <li>• T-тест Уэлча для сравнения средних значений с учётом неравных дисперсий.</li>
+              <li>• Критерий Манна-Уитни как непараметрическая проверка распределений.</li>
+              <li>• Уровень значимости α = 0.05.</li>
+            </ul>
+          </article>
+
+          <article class="card p-6">
+            <h3 class="text-lg font-bold text-slate-900">Очистка и валидация</h3>
+            <ul class="mt-4 space-y-3 text-slate-600 leading-7">
+              <li>• Фильтрация строк без суммы платежа или ID клиента.</li>
+              <li>• Исключение торговых точек с нулевой выручкой в тестовой или контрольной группе.</li>
+              <li>• Финальная выборка после очистки: 45 841 клиент.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="mt-8">
+          <a href="https://nbviewer.jupyter.org/github/yarsuleimenov-code/yarsuleimenov-profile/blob/main/ab_report/ab_report.ipynb" target="_blank" rel="noopener noreferrer" class="btn-primary">Открыть Python / Jupyter Notebook ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-900 text-white py-8">
+    <div class="container-xl flex flex-col sm:flex-row gap-3 justify-between text-sm text-slate-400">
+      <p>© <span id="year">2026</span> Ярослав Сулейменов</p>
+      <a href="../index.html#projects" class="hover:text-white">Вернуться к портфолио</a>
+    </div>
+  </footer>
+
+  <script>
+    const APP_DATA = {
+      overall: {
+        avgPayTest: 2446.70,
+        avgPayControl: 2186.10,
+        convTest: 0.542,
+        convControl: 0.499,
+        positiveCount: 17,
+        neutralCount: 33,
+        negativeCount: 3,
+      },
+      segments: [
+        { city: 'Казань', id: 991, diff: 796.30, label: 'positive' },
+        { city: 'СПб', id: 453, diff: 612.04, label: 'positive' },
+        { city: 'Москва', id: 2652, diff: 536.04, label: 'positive' },
+        { city: 'Самара', id: 34, diff: 1351.90, label: 'positive' },
+        { city: 'Волгоград', id: 66, diff: -312.89, label: 'negative' },
+        { city: 'Краснодар', id: 1101, diff: -347.58, label: 'negative' },
+        { city: 'Москва', id: 9931, diff: -552.91, label: 'negative' },
+        { city: 'Красноярск', id: 212, diff: -77.74, label: 'neutral' },
+        { city: 'Н. Новгород', id: 13, diff: -365.64, label: 'neutral' },
+        { city: 'Мурманск', id: 54, diff: 14.20, label: 'neutral' },
+        { city: 'Владимир', id: 11, diff: 438.61, label: 'positive' },
+        { city: 'Чехов', id: 4, diff: 95.53, label: 'neutral' },
+        { city: 'Краснодар', id: 1015, diff: 94.43, label: 'neutral' },
+      ],
+      currentMetric: 'avgPay',
+      mainChart: null,
+      segmentChart: null,
+    };
+
+    const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+    const formatRub = (value) => `${value.toFixed(2)} ₽`;
+
+    const updateCounts = () => {
+      document.getElementById('positive-count').textContent = APP_DATA.overall.positiveCount;
+      document.getElementById('neutral-count').textContent = APP_DATA.overall.neutralCount;
+      document.getElementById('negative-count').textContent = APP_DATA.overall.negativeCount;
+      document.getElementById('all-count').textContent = APP_DATA.overall.positiveCount + APP_DATA.overall.neutralCount + APP_DATA.overall.negativeCount;
+    };
+
+    const renderMainChart = () => {
+      const ctx = document.getElementById('mainChart');
+      const isAvgPay = APP_DATA.currentMetric === 'avgPay';
+      const labels = ['Тестовая группа', 'Контрольная группа'];
+      const values = isAvgPay
+        ? [APP_DATA.overall.avgPayTest, APP_DATA.overall.avgPayControl]
+        : [APP_DATA.overall.convTest * 100, APP_DATA.overall.convControl * 100];
+
+      if (APP_DATA.mainChart) APP_DATA.mainChart.destroy();
+
+      APP_DATA.mainChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            data: values,
+            backgroundColor: [cssVar('--accent'), cssVar('--neutral')],
+            borderRadius: 8,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => isAvgPay ? formatRub(context.raw) : `${context.raw.toFixed(1)}%`,
+              }
+            }
+          },
+          scales: {
+            y: {
+              min: isAvgPay ? 1000 : 0,
+              ticks: {
+                callback: (value) => isAvgPay ? `${value} ₽` : `${value}%`,
+              }
+            }
+          }
+        }
+      });
+    };
+
+    const renderSegmentChart = (data) => {
+      const ctx = document.getElementById('segmentChart');
+      const sorted = [...data].sort((a, b) => b.diff - a.diff);
+
+      if (APP_DATA.segmentChart) APP_DATA.segmentChart.destroy();
+
+      APP_DATA.segmentChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: sorted.map(item => `${item.city} · ТТ ${item.id}`),
+          datasets: [{
+            data: sorted.map(item => item.diff),
+            backgroundColor: sorted.map(item => {
+              if (item.label === 'positive') return cssVar('--positive');
+              if (item.label === 'negative') return cssVar('--negative');
+              return cssVar('--neutral');
+            }),
+            borderRadius: 8,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => formatRub(context.raw),
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                callback: (value) => `${value} ₽`,
+              }
+            }
+          }
+        }
+      });
+    };
+
+    const updateSegmentView = (segment) => {
+      const tableBody = document.getElementById('segmentTableBody');
+      const segmentTitle = document.getElementById('segment-title');
+      const data = segment === 'all'
+        ? APP_DATA.segments
+        : APP_DATA.segments.filter(item => item.label === segment);
+
+      const titles = {
+        all: 'Детализация: все торговые точки',
+        positive: 'Детализация: положительный эффект',
+        neutral: 'Детализация: нейтральный эффект',
+        negative: 'Детализация: отрицательный эффект',
+      };
+
+      segmentTitle.textContent = titles[segment];
+      tableBody.innerHTML = '';
+
+      [...data].sort((a, b) => b.diff - a.diff).forEach(item => {
+        const row = document.createElement('tr');
+        const diffClass = item.diff > 0 ? 'text-green-700 font-semibold' : item.diff < 0 ? 'text-red-700 font-semibold' : 'text-slate-600';
+        row.className = 'border-b border-slate-100 hover:bg-slate-50';
+        row.innerHTML = `
+          <td class="px-3 py-2">${item.city}</td>
+          <td class="px-3 py-2">${item.id}</td>
+          <td class="px-3 py-2 ${diffClass}">${item.diff.toFixed(2)}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        tab.classList.toggle('tab-active', tab.dataset.segment === segment);
+      });
+
+      renderSegmentChart(data);
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      updateCounts();
+      renderMainChart();
+      updateSegmentView('all');
+
+      document.getElementById('toggle-chart').addEventListener('click', (event) => {
+        APP_DATA.currentMetric = APP_DATA.currentMetric === 'avgPay' ? 'conversion' : 'avgPay';
+        event.currentTarget.textContent = APP_DATA.currentMetric === 'avgPay' ? 'Метрика: средний чек' : 'Метрика: конверсия';
+        renderMainChart();
+      });
+
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        tab.addEventListener('click', () => updateSegmentView(tab.dataset.segment));
+      });
+    });
+  </script>
+</body>
+</html>
 
