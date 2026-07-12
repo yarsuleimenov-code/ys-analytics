@@ -98,6 +98,12 @@
 
     .nav-link:hover { color: var(--accent); }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
+    }
+
     .btn-primary,
     .btn-secondary {
       display: inline-flex;
@@ -165,13 +171,17 @@
       const mobileMenu = document.getElementById('mobile-menu');
 
       if (menuButton && mobileMenu) {
-        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        menuButton.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('hidden') === false;
+          menuButton.setAttribute('aria-expanded', String(isOpen));
+        });
       }
 
       document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', () => {
           if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
+            menuButton?.setAttribute('aria-expanded', 'false');
           }
         });
       });
@@ -202,7 +212,7 @@
           <a href="index.html" class="btn-secondary !min-h-0 !py-2 !px-3" lang="ru">Русский</a>
         </div>
 
-        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Open menu">
+        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -226,14 +236,14 @@
     <div class="container-xl section">
       <div class="grid lg:grid-cols-[1fr_320px] gap-12 items-center">
         <div>
-          <p class="eyebrow mb-4">Business Analyst</p>
+          <p class="eyebrow mb-4">Business Analyst · Processes · Internal Systems</p>
 
           <h1 class="max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem] font-bold leading-tight tracking-[-.035em] text-slate-900">
-            Business Analysis and Data Analytics
+            Business Analyst
           </h1>
 
           <p class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
-            I help formalize business requirements, design internal systems, structure operational processes, and translate business needs into clear artifacts for development and management teams.
+            Processes, internal systems, and data analysis for clear and implementable business solutions.
           </p>
 
           <div class="mt-7 flex flex-col sm:flex-row gap-3">
@@ -279,7 +289,7 @@
           <div class="p-5 bg-white border-t border-slate-200">
             <div class="font-bold text-slate-900">Yaroslav Suleimenov</div>
             <div class="mt-1 text-sm text-slate-500">Business Analyst</div>
-            <div class="mt-4 text-sm text-slate-600 leading-6">Focus: business analysis, internal systems, CRM processes, and analytics for operational decisions.</div>
+            <div class="mt-4 text-sm text-slate-600 leading-6">Focused on processes and internal systems.</div>
           </div>
         </aside>
       </div>
@@ -330,34 +340,49 @@
 
         <div class="grid lg:grid-cols-3 gap-5">
           <article class="card card-hover p-6 lg:col-span-2">
-            <!-- Insert wireframe_shot: upload the file to assets/projects/wireframe_shot.jpg -->
+            <!-- Operational Tower screenshot: assets/projects/operational_tower_shot.jpg -->
             <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/7] mb-5 overflow-hidden">
-              <img src="assets/projects/wireframe_shot.jpg" alt="Broker calculator system" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Broker calculator wireframe')" />
+              <img src="assets/projects/operational_tower_shot.jpg" alt="Operational Tower Platform interface" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Operational Tower Platform')" />
             </div>
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
               <div>
                 <p class="text-sm font-semibold text-blue-700 mb-2">BA / System Design / CRM</p>
-                <h3 class="text-xl font-bold text-slate-900">Broker Calculator System</h3>
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">Work project · Zaberman LLC</p>
+                <h3 class="text-xl font-bold text-slate-900">Operational Tower Platform</h3>
               </div>
               <a href="#contact" class="text-sm font-bold text-blue-700 hover:text-blue-900 shrink-0">Discuss case →</a>
             </div>
 
-            <p class="mt-4 text-slate-600 leading-7 max-w-3xl">Design of a broker calculator for quote calculation, margin analysis, variable costs, and reference data management: reference data, item templates, pricing logic, roles, and broker workflows.</p>
+            <p class="mt-4 text-slate-600 leading-7 max-w-3xl">Design of an Operational Tower for an interstate delivery company: an end-to-end request flow from broker and dispatcher to the delivery crew, quote and margin calculation, pricing engine, reference data, user roles, workflow, and operational analytics.</p>
+            <p class="mt-3 text-sm font-medium text-slate-500">Broker → Dispatcher → Logistics → Warehouse → Driver → Analytics → Management</p>
 
             <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
               <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
                 <div class="font-semibold text-slate-900">Task</div>
-                <p class="mt-1 text-slate-600 leading-6">Standardize quote calculation, variable costs, and margin logic while reducing dependency on manual calculations.</p>
+                <p class="mt-1 text-slate-600 leading-6">Unify commercial calculation, operational planning, and the delivery workflow in one system.</p>
               </div>
               <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
                 <div class="font-semibold text-slate-900">Artifacts</div>
-                <p class="mt-1 text-slate-600 leading-6">Reference data, pricing logic, margin calculation, item templates, workflow design.</p>
+                <p class="mt-1 text-slate-600 leading-6">Pricing engine, reference data management, role model, workflow orchestration, operational analytics, route economics.</p>
               </div>
               <div class="rounded-xl bg-slate-50 border border-slate-200 p-4">
                 <div class="font-semibold text-slate-900">Result</div>
-                <p class="mt-1 text-slate-600 leading-6">MVP concept for discussing calculation logic and system architecture.</p>
+                <p class="mt-1 text-slate-600 leading-6">An agreed Operational Tower architecture and unified logic for commercial proposals, operational planning, and delivery workflow management.</p>
               </div>
             </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- AI bot screenshot: assets/projects/ai_bot_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[689/482] mb-5 overflow-hidden">
+              <img src="assets/projects/ai_bot_shot.jpg" alt="Telegram interface of the AI Business Analyst Assistant" class="w-full h-full object-contain" loading="lazy" decoding="async" onerror="imageFallback(this, 'AI Business Analyst Assistant')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">AI / Telegram / Business Analysis</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">Personal initiative</p>
+            <h3 class="text-xl font-bold text-slate-900">AI Business Analyst Assistant</h3>
+            <p class="mt-3 text-slate-600 leading-7">A personal Telegram assistant for exploring experience, projects, and BA competencies. I was responsible for the concept, interaction scenarios, knowledge base structure, and response testing.</p>
+            <p class="mt-4 text-sm text-slate-600 leading-6"><span class="font-semibold text-slate-900">Result:</span> a working interactive format for presenting the professional profile.</p>
+            <a href="https://t.me/Aislav_Suleimenov_bot" target="_blank" rel="noopener noreferrer" class="mt-5 inline-block text-sm font-bold text-blue-700 hover:text-blue-900">Open bot →</a>
           </article>
 
           <article class="card card-hover p-6">
@@ -366,6 +391,7 @@
               <img src="assets/projects/ab_test_shot.jpg" alt="A/B test dashboard" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'A/B test dashboard')" />
             </div>
             <p class="text-sm font-semibold text-blue-700 mb-2">Analytics / Reporting</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">Training analytics case</p>
             <h3 class="text-xl font-bold text-slate-900">A/B Test: Push Notifications</h3>
             <p class="mt-4 text-slate-600 leading-7">Analysis of how push notifications affected conversion, average order value, and regional performance.</p>
             <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
@@ -390,6 +416,7 @@
               <img src="assets/projects/course_shot.jpg" alt="IBP and OLAP course materials" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'Course materials')" />
             </div>
             <p class="text-sm font-semibold text-blue-700 mb-2">Education / Analytics</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">Educational project · From Optimacros experience</p>
             <h3 class="text-xl font-bold text-slate-900">Course “Introduction to IBP and OLAP”</h3>
             <p class="mt-4 text-slate-600 leading-7">Development of an elective course covering OLAP architecture, planning, modeling, and financial logic.</p>
             <div class="mt-5">
@@ -456,7 +483,7 @@
             </div>
 
             <div class="grid gap-5">
-              <article class="card p-6">
+              <article class="card p-6 border-blue-200 bg-gradient-to-b from-white to-blue-50/40">
                 <div>
                   <h3 class="text-xl font-bold text-slate-900">Business Analyst</h3>
                   <p class="mt-1 text-sm text-slate-500">Zaberman LLC · March 2026 — Present</p>
@@ -464,25 +491,33 @@
 
                 <div class="mt-5 grid md:grid-cols-[180px_1fr] gap-6 text-sm">
                   <div>
-                    <div class="font-semibold text-slate-900">Key focus</div>
+                    <div class="font-semibold text-slate-900">Context</div>
                     <p class="mt-2 text-slate-600 leading-6">
-                      Design and implementation of an internal information system for company operations.
+                      Design of an internal information system for an interstate delivery company with branches across several US states.
                     </p>
                   </div>
 
                   <div>
-                    <div class="font-semibold text-slate-900">Main responsibilities</div>
+                    <div class="font-semibold text-slate-900">Ownership and key decisions</div>
                     <ul class="mt-2 space-y-2 text-slate-600 leading-6">
-                      <li>• Analysis of dispatch, CRM, and internal operational processes</li>
-                      <li>• Design of Operational Hub structure and user scenarios</li>
-                      <li>• Requirements formalization, backlog management, and task definition for development</li>
-                      <li>• Elaboration of roles, integrations, BI reporting, and system architecture</li>
+                      <li>• Analysis of broker, dispatcher, warehouse, and CRM processes</li>
+                      <li>• Stakeholder interviews and solution alignment with the CEO, users, and team</li>
+                      <li>• Design of the Operational Tower Platform and its key modules, including Broker Calculator, pricing engine, and reference data</li>
+                      <li>• Design of pricing logic, reference data, and margin calculation</li>
+                      <li>• Requirements, backlog, acceptance criteria, and integration management</li>
+                    </ul>
+                    <div class="mt-4 font-semibold text-slate-900">Results</div>
+                    <ul class="mt-2 space-y-2 text-slate-600 leading-6">
+                      <li>• Business processes documented for 6 end-to-end delivery roles</li>
+                      <li>• 12 stages of the complete delivery workflow covered</li>
+                      <li>• A single requirements source established for development and implementation</li>
+                      <li>• MVP Operational Tower architecture agreed and the implementation sequence for key modules defined</li>
                     </ul>
                   </div>
                 </div>
               </article>
 
-              <article class="card p-6 border-blue-200 bg-gradient-to-b from-white to-blue-50/40">
+              <article class="card p-6">
                 <div>
                   <h3 class="text-xl font-bold text-slate-900">Business Analyst</h3>
                   <p class="mt-1 text-sm text-slate-500">Optimacros · May 2025 — March 2026</p>
@@ -492,17 +527,19 @@
                   <div>
                     <div class="font-semibold text-slate-900">Key focus</div>
                     <p class="mt-2 text-slate-600 leading-6">
-                      Business requirements, internal systems, processes, user scenarios, and analytical support for decision-making.
+                      Requirements formalization and management, analytical support, and solution alignment across OLAP and IBP projects.
                     </p>
                   </div>
 
                   <div>
                     <div class="font-semibold text-slate-900">Main responsibilities</div>
                     <ul class="mt-2 space-y-2 text-slate-600 leading-6">
-                      <li>• Gathering and documenting business requirements for internal systems</li>
-                      <li>• Designing MVP information system concepts and wireframes</li>
-                      <li>• Preparing analytical artifacts and documentation</li>
-                      <li>• Managing backlog, knowledge base, and task definitions</li>
+                      <li>• Business requirements formalization and data analysis</li>
+                      <li>• Preparation of model prototypes, PoCs, and demonstration scenarios</li>
+                      <li>• Stakeholder interviews and facilitation of solution discussions</li>
+                      <li>• Requirements change management and presale support</li>
+                      <li>• Functional solution alignment across business, consulting, and development teams</li>
+                      <li>• Documentation, user training, and knowledge transfer</li>
                     </ul>
                   </div>
                 </div>
