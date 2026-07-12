@@ -98,6 +98,12 @@
 
     .nav-link:hover { color: var(--accent); }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
+    }
+
     .btn-primary,
     .btn-secondary {
       display: inline-flex;
@@ -165,13 +171,17 @@
       const mobileMenu = document.getElementById('mobile-menu');
 
       if (menuButton && mobileMenu) {
-        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        menuButton.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('hidden') === false;
+          menuButton.setAttribute('aria-expanded', String(isOpen));
+        });
       }
 
       document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', () => {
           if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
+            menuButton?.setAttribute('aria-expanded', 'false');
           }
         });
       });
@@ -202,7 +212,7 @@
           <a href="index.html" class="btn-secondary !min-h-0 !py-2 !px-3" lang="ru">Русский</a>
         </div>
 
-        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Open menu">
+        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -229,7 +239,7 @@
           <p class="eyebrow mb-4">Business Analyst</p>
 
           <h1 class="max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem] font-bold leading-tight tracking-[-.035em] text-slate-900">
-            Business Analysis and Data Analytics
+            Business analysis, data, and system solutions
           </h1>
 
           <p class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
@@ -358,6 +368,22 @@
                 <p class="mt-1 text-slate-600 leading-6">MVP concept for discussing calculation logic and system architecture.</p>
               </div>
             </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- AI bot screenshot: assets/projects/ai_bot_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/9] mb-5 overflow-hidden">
+              <img src="assets/projects/ai_bot_shot.jpg" alt="Telegram interface of the AI Business Analyst Assistant" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'AI Business Analyst Assistant')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">AI / Telegram / Business Analysis</p>
+            <h3 class="text-xl font-bold text-slate-900">AI Business Analyst Assistant</h3>
+            <p class="mt-3 text-slate-600 leading-7">A personal Telegram assistant for exploring the author's professional experience, projects, and competencies, as well as for basic conversations about business analysis.</p>
+            <dl class="mt-5 grid gap-3 text-sm">
+              <div><dt class="font-semibold text-slate-900">Role</dt><dd class="mt-1 text-slate-600 leading-6">Concept, requirements, interaction scenarios, knowledge base structure, and response testing.</dd></div>
+              <div><dt class="font-semibold text-slate-900">Artifacts</dt><dd class="mt-1 text-slate-600 leading-6">Conversation flow, knowledge base, Telegram interface, response scenarios.</dd></div>
+              <div><dt class="font-semibold text-slate-900">Result</dt><dd class="mt-1 text-slate-600 leading-6">A working interactive channel for presenting the portfolio and professional profile.</dd></div>
+            </dl>
+            <a href="https://t.me/Aislav_Suleimenov_bot" target="_blank" rel="noopener noreferrer" class="mt-5 inline-block text-sm font-bold text-blue-700 hover:text-blue-900">Open bot →</a>
           </article>
 
           <article class="card card-hover p-6">

@@ -98,6 +98,12 @@
 
     .nav-link:hover { color: var(--accent); }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
+    }
+
     .btn-primary,
     .btn-secondary {
       display: inline-flex;
@@ -167,13 +173,17 @@
       const mobileMenu = document.getElementById('mobile-menu');
 
       if (menuButton && mobileMenu) {
-        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        menuButton.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('hidden') === false;
+          menuButton.setAttribute('aria-expanded', String(isOpen));
+        });
       }
 
       document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', () => {
           if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
+            menuButton?.setAttribute('aria-expanded', 'false');
           }
         });
       });
@@ -204,7 +214,7 @@
           <a href="index_en.html" class="btn-secondary !min-h-0 !py-2 !px-3" lang="en">English</a>
         </div>
 
-        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Открыть меню">
+        <button id="menu-button" class="lg:hidden inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -231,7 +241,7 @@
           <p class="eyebrow mb-4">Business Analyst</p>
 
           <h1 class="max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem] font-bold leading-tight tracking-[-.035em] text-slate-900">
-            Бизнес-анализ и аналитика данных
+            Бизнес-анализ, данные и системные решения
           </h1>
 
           <p class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-slate-600">
@@ -360,6 +370,22 @@
                 <p class="mt-1 text-slate-600 leading-6">MVP-концепт для обсуждения логики расчётов и архитектуры системы.</p>
               </div>
             </div>
+          </article>
+
+          <article class="card card-hover p-6">
+            <!-- AI bot screenshot: assets/projects/ai_bot_shot.jpg -->
+            <div class="rounded-xl border border-slate-200 bg-slate-50 aspect-[16/9] mb-5 overflow-hidden">
+              <img src="assets/projects/ai_bot_shot.jpg" alt="Telegram-интерфейс AI-бота бизнес-аналитика" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="imageFallback(this, 'AI-бот бизнес-аналитика')" />
+            </div>
+            <p class="text-sm font-semibold text-blue-700 mb-2">AI / Telegram / Business Analysis</p>
+            <h3 class="text-xl font-bold text-slate-900">AI-бот бизнес-аналитика</h3>
+            <p class="mt-3 text-slate-600 leading-7">Персональный Telegram-ассистент для знакомства с профессиональным опытом, проектами и компетенциями автора, а также для базового диалога по тематике бизнес-анализа.</p>
+            <dl class="mt-5 grid gap-3 text-sm">
+              <div><dt class="font-semibold text-slate-900">Роль</dt><dd class="mt-1 text-slate-600 leading-6">Концепция, требования, сценарии взаимодействия, структура базы знаний, тестирование ответов.</dd></div>
+              <div><dt class="font-semibold text-slate-900">Артефакты</dt><dd class="mt-1 text-slate-600 leading-6">Conversation flow, knowledge base, Telegram interface, response scenarios.</dd></div>
+              <div><dt class="font-semibold text-slate-900">Результат</dt><dd class="mt-1 text-slate-600 leading-6">Рабочий интерактивный канал представления портфолио и профессионального профиля.</dd></div>
+            </dl>
+            <a href="https://t.me/Aislav_Suleimenov_bot" target="_blank" rel="noopener noreferrer" class="mt-5 inline-block text-sm font-bold text-blue-700 hover:text-blue-900">Открыть бота →</a>
           </article>
 
           <article class="card card-hover p-6">
